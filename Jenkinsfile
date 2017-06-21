@@ -1,6 +1,6 @@
 node {
   stage("Git") {
-    withCredentials[usernamePassword(credentialsId: 'github-token', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+    withCredentials[usernamePassword(credentialsId: 'github-token', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')] {
       sh("git tag -a $(date '+%s') -m 'Jenkins'")
       sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@https://github.com/TYPO3-cookbooks-test/credentials --tags')
     }
