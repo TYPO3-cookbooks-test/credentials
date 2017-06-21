@@ -1,5 +1,8 @@
 node {
-  stage("Git") {
+  stage("Git Checkout") {
+    checkout(scm)
+  }
+  stage("Git Tag") {
     sh "pwd"
     sh "ls -la"
     withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'github-token', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME']]) {
