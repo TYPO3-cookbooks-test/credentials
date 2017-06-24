@@ -19,7 +19,9 @@ node {
 //      gitCredentialsUrl = gitCredentialsUrl.replace('.git', '')
       command = "git push ${gitCredentialsUrl} --tags"
       writeFile(file: 'command.sh', text: command)
-      sh(command)
+      retry(5) {
+        sh(command)
+      }
     }
   }
 }
