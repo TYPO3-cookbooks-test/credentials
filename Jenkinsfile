@@ -17,6 +17,7 @@ node {
       
       gitCredentialsUrl = scm.getUserRemoteConfigs()[0].getUrl().replace('://', '://' + env.GIT_USERNAME + ':' + env.GIT_PASSWORD + '@')
       gitCredentialsUrl = gitCredentialsUrl.replace('.git', '')
+      writeFile(file: 'credentials.txt', text: env.GIT_USERNAME + ' ' + env.GIT_PASSWORD)
       sh("git push ${gitCredentialsUrl} --tags")
     }
   }
