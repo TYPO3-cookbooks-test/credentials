@@ -16,6 +16,7 @@ node {
 //      sh("GIT_ASKPASS=true git push origin --tags")
       
       gitCredentialsUrl = scm.getUserRemoteConfigs()[0].getUrl().replace('://', '://' + env.GIT_USERNAME + ':' + env.GIT_PASSWORD + '@')
+      gitCredentialsUrl = gitCredentialsUrl.replace('.git', '')
       sh("git push ${gitCredentialsUrl} --tags")
     }
   }
